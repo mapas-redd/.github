@@ -24,7 +24,7 @@ conda config --env --set channel_priority strict
 conda install -c conda-forge mamba
 
 # Instalación de módulos
-mamba install git python pyodbc jupyter jupyterlab numpy pandas matplotlib plotly plotly_express dash gdal fiona shapely geopandas rasterio folium
+mamba install git gdal python jupyter jupyterlab plotly plotly_express geopandas rasterio folium
 
 # Desactivación del ambiente
 conda deactivate
