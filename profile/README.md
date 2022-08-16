@@ -1,9 +1,10 @@
-# Mapas de uso del suelo de Costa Rica para REDD+
-Esta organización contiene un conjunto de repositorios que implementan los flujos de trabajo necesarios para generar mapas de uso de suelo consistentes con la serie histórica de actividad de uso del suelo y cambio de uso del suelo generada entre 1987 y 2013 en Costa Rica.
+# Mapas de Costa Rica para REDD+
+Esta organización contiene un conjunto de repositorios que implementan flujos de trabajo para generar mapas de Costa Rica para Reducción de Emisiones por Deforestación y Degradación más conservación y aumento de reservas de carbono forestal (REDD+).
+
+La programación se realiza con el lenguaje [Python](https://www.python.org/) y varios de sus módulos, los cuales se instalan y mantienen con el administrador de paquetes y ambientes [Conda](https://docs.conda.io/).
 
 ## Ambiente conda
-Los módulos necesarios se instalan mediante un ambiente [Conda](https://docs.conda.io/).
-
+Los siguientes comandos crean un ambiente Conda llamado `mapas-redd`, con los módulos requeridos por los programas.
 
 ```shell
 # Actualización de Conda
@@ -26,14 +27,14 @@ conda config --env --set channel_priority strict
 conda install -c conda-forge mamba
 
 # Instalación de módulos
-mamba install make git cookiecutter gdal python jupyter jupyterlab
+mamba install make git gdal python cookiecutter jupyter jupyterlab
 
 # Desactivación del ambiente (al finalizar la sesión de trabajo)
 conda deactivate
 ```
 
 ## Mapas de uso del suelo (repositorio `uso-suelo`)
-Para dar una estructura inicial al directorio del proyecto, se utiliza el el utilitario de línea de comandos [cookiecutter](https://pypi.org/project/cookiecutter/), el cual crea la estructura con base en una plantilla. En este caso, se utiliza la plantilla [cookiecutter-data-science](cookiecutter https://github.com/drivendata/cookiecutter-data-science).
+Para configurar la estructura del directorio del proyecto, se emplea el utilitario de línea de comandos [cookiecutter](https://pypi.org/project/cookiecutter/), el cual crea la estructura con base en la plantilla [cookiecutter-data-science](cookiecutter https://github.com/drivendata/cookiecutter-data-science).
 
 ```shell
 # Creación del directorio del proyecto con la estructura de cookiecutter
@@ -56,11 +57,12 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 # Choose from 1, 2 [1]: 
 ```
 
-En la organización, debe crearse el repositorio `uso-suelo` (público y sin ningún contenido) y sincronizarlo con el directorio recién creado, a través de los comandos:
+Seguidamente, dentro de esta organización GitHub, debe crearse el repositorio `uso-suelo` (público y sin ningún contenido) y sincronizarlo con el directorio recién creado, a través de los comandos:
 
 ```shell
 # Sincronización de los repositorios local y remoto
 
+cd uso-suelo
 git init
 git add .
 git commit -m "Commit inicial"
