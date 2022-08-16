@@ -32,11 +32,12 @@ mamba install make git cookiecutter gdal python jupyter jupyterlab
 conda deactivate
 ```
 
-## Mapas de uso del suelo (uso-suelo)
-Para dar una estructura inicial al proyecto, se utiliza el el utilitario de línea de comandos [cookiecutter](https://pypi.org/project/cookiecutter/), el cual crea un proyecto con base en una plantilla. En este caso, se utiliza la plantilla [cookiecutter-data-science](cookiecutter https://github.com/drivendata/cookiecutter-data-science).
+## Mapas de uso del suelo (repositorio `uso-suelo`)
+Para dar una estructura inicial al directorio del proyecto, se utiliza el el utilitario de línea de comandos [cookiecutter](https://pypi.org/project/cookiecutter/), el cual crea la estructura con base en una plantilla. En este caso, se utiliza la plantilla [cookiecutter-data-science](cookiecutter https://github.com/drivendata/cookiecutter-data-science).
 
 ```shell
 # Creación del directorio del proyecto con la estructura de cookiecutter
+
 cookiecutter https://github.com/drivendata/cookiecutter-data-science
 # project_name [project_name]: uso-suelo
 # repo_name [uso-suelo]: 
@@ -55,7 +56,15 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 # Choose from 1, 2 [1]: 
 ```
 
-En la organización, debe crearse el repositorio `uso-suelo` y sincronizarlo con el directorio recién creado a través de los comandos:
+En la organización, debe crearse el repositorio `uso-suelo` (público y sin ningún contenido) y sincronizarlo con el directorio recién creado, a través de los comandos:
 
 ```shell
+# Sincronización de los repositorios local y remoto
+
+git init
+git add .
+git commit -m "Commit inicial"
+git branch -M main
+git remote add origin git@github.com:mapas-redd/uso-suelo.git
+git push -u origin main
 ```
