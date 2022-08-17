@@ -27,7 +27,7 @@ conda config --env --set channel_priority strict
 conda install -c conda-forge mamba
 
 # Instalación de módulos
-mamba install make git gdal python cookiecutter jupyter jupyterlab
+mamba install make git python cookiecutter jupyter jupyterlab matplotlib gdal
 
 # Desactivación del ambiente (al finalizar la sesión de trabajo)
 conda deactivate
