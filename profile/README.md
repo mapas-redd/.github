@@ -3,7 +3,7 @@ Esta organización contiene un conjunto de repositorios que implementan flujos d
 
 La programación se realiza con el lenguaje [Python](https://www.python.org/) y varios de sus módulos, los cuales se instalan y mantienen con el administrador de paquetes y ambientes [Conda](https://docs.conda.io/).
 
-## Ambiente conda
+## Ambiente conda para Python
 Los siguientes comandos crean un ambiente Conda llamado `mapas-redd`, con los módulos requeridos por los programas.
 
 ```shell
@@ -28,6 +28,35 @@ conda install -c conda-forge mamba
 
 # Instalación de módulos
 mamba install make git python cookiecutter jupyter jupyterlab matplotlib gdal rasterio
+
+# Desactivación del ambiente (al finalizar la sesión de trabajo)
+conda deactivate
+```
+
+## Ambiente conda para Random Forest (R)
+
+```shell
+# Actualización de Conda
+conda update conda
+
+# Borrado del ambiente (si es que existe)
+# conda remove -n random-forest --all
+
+# Creación del ambiente
+conda create -n random-forest
+
+# Activación del ambiente
+conda activate random-forest
+
+# Configuración del ambiente
+conda config --env --add channels conda-forge
+conda config --env --set channel_priority strict
+
+# Instalación de mamba
+conda install -c conda-forge mamba
+
+# Instalación de módulos
+mamba install r-base r-essentials r-rgeos r-maptools r-sp r-randomforest r-raster r-rsaga
 
 # Desactivación del ambiente (al finalizar la sesión de trabajo)
 conda deactivate
