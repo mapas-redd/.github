@@ -56,7 +56,7 @@ conda config --env --set channel_priority strict
 conda install -c conda-forge mamba
 
 # Instalación de módulos
-mamba install r-base r-essentials r-rgeos r-maptools r-sp r-randomforest r-rgdal r-raster r-rsaga
+mamba install r-base r-essentials r-rgeos r-maptools r-sp r-randomforest r-rgdal r-raster r-terra r-rsaga
 
 # Desactivación del ambiente (al finalizar la sesión de trabajo)
 conda deactivate
