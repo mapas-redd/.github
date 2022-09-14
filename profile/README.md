@@ -56,7 +56,8 @@ conda config --env --set channel_priority strict
 conda install -c conda-forge mamba
 
 # Instalación de módulos
-mamba install r-base r-essentials r-rgeos r-maptools r-sp r-randomforest r-rgdal r-raster r-terra r-rsaga
+# mamba install r-base r-essentials r-rgeos r-maptools r-sp r-randomforest r-rgdal r-raster r-terra r-rsaga
+conda install r-base r-essentials r-downlit r-bookdown r-blogdown r-xaringan r-distill r-ggplot2 r-ggthemes r-plotly r-dt r-sf r-rmapshaper r-terra r-raster r-rgdal r-leaflet r-leaflet.providers r-leaflet.extras r-leaflet.minicharts r-leafem r-flexdashboard r-shiny r-shinydashboard r-packrat r-rsconnect
 
 # Desactivación del ambiente (al finalizar la sesión de trabajo)
 conda deactivate
