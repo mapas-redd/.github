@@ -1,102 +1,23 @@
-# Mapas de Costa Rica para REDD+
-Esta organización contiene un conjunto de repositorios que implementan flujos de trabajo para generar mapas de Costa Rica para Reducción de Emisiones por Deforestación y Degradación más conservación y aumento de reservas de carbono forestal (REDD+).
+# Programas para la elaboración de mapas de uso y cobertura de la tierra en el contexto de REDD+
+Esta organización contiene un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para la elaboración de mapas de uso y cobertura de la tierra, en el contexto del mecanismo de Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+).
 
-La programación se realiza con el lenguaje [Python](https://www.python.org/) y varios de sus módulos, los cuales se instalan y mantienen con el administrador de paquetes y ambientes [Conda](https://docs.conda.io/).
+En este documento, se listan los repositorios, se brindan las instrucciones para la instalación de las herramientas informáticas necesarias y se describe el protocolo metodológico para el uso de los programas en el proceso de elaboración de los mapas.
 
-## Ambiente conda para Python
-Los siguientes comandos crean un ambiente Conda llamado `mapas-redd`, con los módulos requeridos por los programas.
+## Repositorios
+Los repositorios de código fuente son los siguientes:
 
-```shell
-# Actualización de Conda
-conda update conda
+- [https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis): programas para ejecutarse en el sistema de información geográfica QGIS.
+- [https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r): programa en el lenguaje R que implementa el algoritmo de clasificación Random Forest.
+- [https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat): programas para archivos `.bat` del sistema operativo Microsoft Windows.
 
-# Borrado del ambiente (si es que existe)
-# conda remove -n mapas-redd --all
+## Herramientas informáticas
+Para utilizar los programas, es necesario instalar las siguientes herramientas:
 
-# Creación del ambiente
-conda create -n mapas-redd
+- [QGIS](https://qgis.org): sistema de información geográfica. En este proyecto, se utilizó la **versión 3.22.11 Białowieża LTR**. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de QGIS](https://qgis.org/en/site/forusers/download.html). Para el caso de Microsoft Windows, se recomienda el instalador [OSGeo4W](https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer).
+- [Orfeo Toolbox (OTB)](http://orfeo-toolbox.org/): biblioteca para procesamiento de imágenes de satélite. En este proyecto, se utilizó la **versión 8.1.0**. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de OTB](https://www.orfeo-toolbox.org/download/). En QGIS, debe configurar la [interfaz para OTB](https://www.orfeo-toolbox.org/CookBook/QGISInterface.html).
+- [FMask](https://github.com/GERSL/Fmask): software para detección de nubes y sombras en imágenes satelitales. En este proyecto, se utilizó la **versión 4.6**. Siga las instrucciones correspondientes a su sistema operativo.
+- [R](https://www.r-project.org/) y [RStudio Desktop](https://www.rstudio.com/products/rstudio/): lenguaje de programación para análisis estadístico y ambiente de desarrollo integrado. En este proyecto, se utilizó la **versión 4.2.1 de R** y la **versión 2022.07.1+554 de RStudio Desktop**. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de R](https://cloud.r-project.org/) y en la [página de descargas de RStudio](https://www.rstudio.com/products/rstudio/download/).
 
-# Activación del ambiente
-conda activate mapas-redd
+Adicionalmente, para usuarios avanzados, se recomienda instalar el sistema para control de versiones [Git](https://git-scm.com/). Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas](https://git-scm.com/downloads).
 
-# Configuración del ambiente
-conda config --env --add channels conda-forge
-conda config --env --set channel_priority strict
 
-# Instalación de mamba
-conda install -c conda-forge mamba
-
-# Instalación de módulos
-mamba install make git python cookiecutter jupyter jupyterlab matplotlib gdal rasterio
-
-# Desactivación del ambiente (al finalizar la sesión de trabajo)
-conda deactivate
-```
-
-## Ambiente conda para Random Forest (R)
-
-```shell
-# Actualización de Conda
-conda update conda
-
-# Borrado del ambiente (si es que existe)
-# conda remove -n random-forest --all
-
-# Creación del ambiente
-conda create -n random-forest
-
-# Activación del ambiente
-conda activate random-forest
-
-# Configuración del ambiente
-conda config --env --add channels conda-forge
-conda config --env --set channel_priority strict
-
-# Instalación de mamba
-conda install -c conda-forge mamba
-
-# Instalación de módulos
-# mamba install r-base r-essentials r-rgeos r-maptools r-sp r-randomforest r-rgdal r-raster r-terra r-rsaga
-conda install r-base r-essentials r-downlit r-bookdown r-blogdown r-xaringan r-distill r-ggplot2 r-ggthemes r-plotly r-dt r-sf r-rmapshaper r-terra r-raster r-rgdal r-leaflet r-leaflet.providers r-leaflet.extras r-leaflet.minicharts r-leafem r-flexdashboard r-shiny r-shinydashboard r-packrat r-rsconnect
-
-# Desactivación del ambiente (al finalizar la sesión de trabajo)
-conda deactivate
-```
-
-## Mapas de uso del suelo (repositorio `uso-suelo`)
-Para configurar la estructura del directorio del proyecto, se emplea el utilitario de línea de comandos [cookiecutter](https://pypi.org/project/cookiecutter/), el cual crea la estructura con base en la plantilla [cookiecutter-data-science](cookiecutter https://github.com/drivendata/cookiecutter-data-science).
-
-```shell
-# Creación del directorio del proyecto con la estructura de cookiecutter
-
-cookiecutter https://github.com/drivendata/cookiecutter-data-science
-# project_name [project_name]: uso-suelo
-# repo_name [uso-suelo]: 
-# author_name [Your name (or your organization/company/team)]: Manuel Vargas
-# description [A short description of the project.]: Mapas de uso del suelo
-# Select open_source_license:
-# 1 - MIT
-# 2 - BSD-3-Clause
-# 3 - No license file
-# Choose from 1, 2, 3 [1]: 
-# s3_bucket [[OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')]: 
-# aws_profile [default]: 
-# Select python_interpreter:
-# 1 - python3
-# 2 - python
-# Choose from 1, 2 [1]: 
-```
-
-Seguidamente, dentro de esta organización GitHub, debe crearse el repositorio `uso-suelo` (público y sin ningún contenido) y sincronizarlo con el directorio recién creado, a través de los comandos:
-
-```shell
-# Sincronización de los repositorios local y remoto
-
-cd uso-suelo
-git init
-git add .
-git commit -m "Commit inicial"
-git branch -M main
-git remote add origin git@github.com:mapas-redd/uso-suelo.git
-git push -u origin main
-```
