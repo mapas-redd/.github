@@ -68,18 +68,21 @@ D:\img\LC09_L1TP_016052_20220123_20220124_02_T1>dir
 ```
 
 ### 2. Detección de nubes y sombras
-Este paso se realiza con el programa FMask. Debe ejecutarse en la línea de comandos del sistema operativo y desde el directorio en el que se encuentran los archivos de la imagen.
+Este paso se realiza con el programa FMask. Debe ejecutarse en la línea de comandos del sistema operativo y en el directorio en el que se encuentran los archivos de la imagen.
 
-Entradas:
-- Directorio con archivos de la imagen descargada.
+**Entradas**:
+- Directorio con archivos de la imagen descargada (ej. `D:\img\LC09_L1TP_016052_20220123_20220124_02_T1`).
 
-Salidas:
-- Archivo raster con pixeles marcados como tierra, agua, nubes o sombras.
+**Procesamiento**:
+- Cambio al directorio en el que se encuentran los archivos de la imagen y ejecución de FMask:
 
 ```shell
-cd LC09_L1TP_016052_20220123_20220124_02_T1
+cd D:\img\LC09_L1TP_016052_20220123_20220124_02_T1
 "C:\Program Files\GERS\Fmask_4_6\application\Fmask_4_6.exe"
 ```
+
+**Salidas**:
+- Archivo raster con pixeles marcados como tierra, agua, nubes o sombras.
 
 ```
 09/18/2022  06:41 PM         1,691,740 LC09_L1TP_016052_20220123_20220124_02_T1_Fmask4.tif
@@ -95,5 +98,5 @@ Los pixeles de este archivo tienen 6 posibles valores:
 255 = sin observación  
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/fmask.png)
-Imagen: Nubes y sombras detectadas con FMask.
+**Figura 1**. Imagen con nubes (en blanco) y sombras (en negro) detectadas con FMask.
 
