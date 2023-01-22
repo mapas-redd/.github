@@ -21,6 +21,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     - [3.3. Creación de una pila de bandas](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)
     - [3.4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)
     - [3.5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)
+    - [3.6. Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)
+        - [3.6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -81,6 +83,7 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 [3. Creación de una pila de bandas.](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)  
 [4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)
 [5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)
+[6. Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -246,11 +249,11 @@ Se realiza con la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco d
 **Procesamiento**:
 - Ejecución de la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS.
 
-![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/recortar-referencia-p16-01.png.png)  
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/recortar-referencia-p16-01.png)  
 **Figura 10**. Herramienta `Clip raster by Mask Layer (gdalwarp)` de `Processing` de QGIS.
 
 **Salidas**:
-- Archivo con pila de bandas con normalización horaria.
+- Imagen de referencia recortada.
 
-![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/horaria.png)   
-**Figura 11**. referencia-p16-recortada.png
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/referencia-p16-recortada.png)   
+**Figura 11**. Imagen de referencia recortada en falso color (4-3-2).
