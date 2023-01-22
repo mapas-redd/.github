@@ -33,10 +33,10 @@ Los repositorios de código fuente son los siguientes:
 [redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat) contiene programas para procesamiento por lotes en archivos `.bat` del sistema operativo Microsoft Windows.
 
 ## 2. Herramientas informáticas
-Para utilizar los programas, es necesario instalar diferentes herramientas que incluyen sistemas de información geográfica (SIG), bibliotecas y aplicaciones para teledetección, lenguajes de programación y sistemas de control de versiones. También un complemento de QGIS llamado `REDD+ Costa Rica`, el cual fue desarrollado como parte de esta iniciativa.
+Para utilizar los programas contenidos en los repositorios, es necesario instalar diferentes herramientas que incluyen sistemas de información geográfica (SIG), bibliotecas y aplicaciones para teledetección, lenguajes de programación y sistemas de control de versiones. También un complemento de QGIS llamado `REDD+ Costa Rica`, el cual fue desarrollado como parte de esta iniciativa.
 
 ### 2.1. QGIS
-[QGIS](https://qgis.org) es un sistema de información geográfica de escritorio. En este proyecto, se utilizó la **versión 3.22.11 Białowieża LTR**. Para su instalación, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de QGIS](https://qgis.org/en/site/forusers/download.html). Para el caso de Microsoft Windows, se recomienda el instalador [OSGeo4W](https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer).
+[QGIS](https://qgis.org) es un SIG de escritorio. En este proyecto, se utilizó la **versión 3.22.11 Białowieża LTR**. Para su instalación, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de QGIS](https://qgis.org/en/site/forusers/download.html). Para el caso de Microsoft Windows, se recomienda el instalador [OSGeo4W](https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer).
 
 ### 2.2. Orfeo Toolbox
 [Orfeo Toolbox (OTB)](http://orfeo-toolbox.org/) es una biblioteca para procesamiento de imágenes de satélite. En este proyecto, se utilizó la **versión 8.1.0**. Para instalarla, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de OTB](https://www.orfeo-toolbox.org/download/). En QGIS, debe configurar la [interfaz para OTB](https://www.orfeo-toolbox.org/CookBook/QGISInterface.html).
@@ -78,8 +78,10 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 [2. Detección de nubes y sombras.](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
 [3. Creación de una pila de bandas.](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)  
 
+En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
+
 ### 3.1. Descarga de imágenes y metadatos
-Para descargar las imágenes, se recomienda el sitio [EarthExplorer](https://earthexplorer.usgs.gov/) u otro similar. Como resultado de la descarga, debe obtenerse un directorio con los archivos correspondientes a las bandas y a los metadatos de la imagen. Por ejemplo:
+Para descargar las imágenes, se recomienda acceder el sitio [EarthExplorer](https://earthexplorer.usgs.gov/) u otro similar. Como resultado de la descarga de cada imagen, debe obtenerse un directorio con los archivos correspondientes a las bandas y a los metadatos de esta. Por ejemplo:
 
 ```
 D:\img\LC09_L1TP_016052_20220123_20220124_02_T1>dir
@@ -182,3 +184,23 @@ LC09_L1TP_016052_20220123_20220124_02_T1_B7.TIF
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/pila.png)  
 **Figura 5**. Pila de bandas en falso color (4-3-2).
 
+### 3.4. Cálculo de la reflectancia
+Este paso se realiza con el algoritmo `Reflectancia` del complemento `REDD+ Costa Rica`.
+
+**Entradas**:
+- Archivo con pila de bandas (2 - 7). Por ejemplo, `LC09_L1TP_016052_20220123_20220124_02_T1-PILA.TIF`.
+- `a`: se obtiene del campo `REFLECTANCE_MULT_BAND_X` del archivo de metadatos de la imagen.
+- `b`: se obtiene del campo `REFLECTANCE _ADD_BAND_X` del archivo de metadatos de la imagen.
+- `Cénit`: se obtiene al restar 90 - valor del campo `SUN_ELEVATION` del archivo de metadatos de la imagen.
+
+**Procesamiento**:
+- Ejecución del algoritmo `Reflectancia` del complemento `REDD+ Costa Rica` de QGIS.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/ejecutar-reflectancia.png)  
+**Figura 6**. Algoritmo `Reflectancia` del complemento `REDD+ Costa Rica`.
+
+**Salidas**:
+- Archivo con pila de bandas con valores de reflectancia.
+
+![](img/reflectancia.png)  
+**Figura 7**. Pila de bandas con valores de reflectancia en falso color (4-3-2).
