@@ -187,7 +187,7 @@ LC09_L1TP_016052_20220123_20220124_02_T1_B7.TIF
 **Figura 5**. Pila de bandas en falso color (4-3-2).
 
 ### 3.4. Cálculo de la reflectancia
-Este paso se realiza con el algoritmo `Reflectancia` del complemento `REDD+ Costa Rica`.
+En este paso, se convierten los valores digitales de las seis bandas con las que se está trabajando a valores de reflectancia. Se realiza con el algoritmo `Reflectancia` del complemento `REDD+ Costa Rica`.
 
 **Entradas**:
 - Archivo con pila de bandas (2 - 7). Por ejemplo, `LC09_L1TP_016052_20220123_20220124_02_T1-PILA.TIF`.
@@ -206,3 +206,25 @@ Este paso se realiza con el algoritmo `Reflectancia` del complemento `REDD+ Cost
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/reflectancia.png)   
 **Figura 7**. Pila de bandas con valores de reflectancia en falso color (4-3-2).
+
+### 3.5. Normalización horaria
+Cuando se realizan análisis temporales con imágenes captadas en diferentes fechas y horas, es necesario normalizarlas para que sean comparables entre sí. Para normalizar una imagen, se corrige el valor de cada pixel con un factor que considera la variación del flujo solar incidente en la imagen respecto a otra imagen de referencia. 
+
+Esta tarea se realiza con el algoritmo `Normalización horaria` del complemento `REDD+ Costa Rica`.
+
+**Entradas**:
+- Archivo con pila de bandas con valores de reflectancia (2 - 7). Por ejemplo, `LC09_L1TP_016052_20220123_20220124_02_T1-REFLECTANCIA.TIF`.
+- `Cénit`: se obtiene al restar 90 - valor del campo `SUN_ELEVATION` del archivo de metadatos de la imagen.
+- `Cénit de la imagen de referencia`: se utiliza por defecto un valor igual a 36.9.
+
+**Procesamiento**:
+- Ejecución del algoritmo `Normalización horaria` del complemento `REDD+ Costa Rica` de QGIS.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/ejecutar-normalizacion-horaria.png)  
+**Figura 8**. Algoritmo `Normalización horaria` del complemento `REDD+ Costa Rica`.
+
+**Salidas**:
+- Archivo con pila de bandas con normalización horaria.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/horaria.png)   
+**Figura 9**. Pila de bandas con normalización horaria en falso color (4-3-2).
