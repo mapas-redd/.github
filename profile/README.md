@@ -202,5 +202,5 @@ Este paso se realiza con el algoritmo `Reflectancia` del complemento `REDD+ Cost
 **Salidas**:
 - Archivo con pila de bandas con valores de reflectancia.
 
-![](img/reflectancia.png)  
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/reflectancia.png)   
 **Figura 7**. Pila de bandas con valores de reflectancia en falso color (4-3-2).
