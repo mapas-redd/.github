@@ -20,6 +20,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     - [3.2. Detección de nubes y sombras](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)
     - [3.3. Creación de una pila de bandas](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)
     - [3.4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)
+    - [3.5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -79,6 +80,7 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 [2. Detección de nubes y sombras.](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
 [3. Creación de una pila de bandas.](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)  
 [4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)
+[5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
