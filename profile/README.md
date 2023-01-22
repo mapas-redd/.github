@@ -230,3 +230,27 @@ Esta tarea se realiza con el algoritmo `Normalización horaria` del complemento 
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/horaria.png)   
 **Figura 9**. Pila de bandas con normalización horaria en falso color (4-3-2).
+
+### 3.6. Normalización radiométrica
+La normalización radiométrica se realiza para corregir diferencias entre imágenes, causadas por variaciones en las condiciones atmosféricas y de iluminación. La implementación usada aquí está basada en el algoritmo IR-MAD (Iteratively Reweighted Multivariante ALteration Detection), propuesto por Canty & Nielsen. Este método se basa en la localización de pixeles invariantes entre la imagen que se desea corregir y una imagen de referencia.
+
+Este paso se ejecuta con el programa `imad.py`, el cual se distribuye junto con el complemento `REDD+ Costa Rica`. Antes de ejecutar este programa, tanto la imagen de referencia como la imagen que desea normalizarse, deben recortarse con la máscara vectorial del contorno del país, en formato vectorial. Para el caso de Costa Rica, el país se divide en los *paths* ("pasadas") correspondientes a los recorridos de Landsat: P14 (este), P15 (centro) y P16 (oeste), por lo que cada imagen se recorta con respecto a su *path*.
+
+#### 3.6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país
+Se realiza con la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS.
+
+**Entradas**:
+- Imagen de referencia para la "pasada" correspondiente (P14, P15, P16).
+- Máscara vectorial para la "pasada" correspondiente (P14, P15, P16).
+
+**Procesamiento**:
+- Ejecución de la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/recortar-referencia-p16-01.png.png)  
+**Figura 10**. Herramienta `Clip raster by Mask Layer (gdalwarp)` de `Processing` de QGIS.
+
+**Salidas**:
+- Archivo con pila de bandas con normalización horaria.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/horaria.png)   
+**Figura 11**. referencia-p16-recortada.png
