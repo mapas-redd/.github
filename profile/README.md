@@ -78,13 +78,13 @@ Los programas apoyan el protocolo metodológico del proyecto *Generating a Consi
 
 Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamente:
 
-[1. Descarga de imágenes y metadatos.](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)  
-[2. Detección de nubes y sombras.](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
-[3. Creación de una pila de bandas.](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)  
-[4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)  
-[5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
-[6. Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
-[6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
+1. [Descarga de imágenes y metadatos.](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)  
+2. [Detección de nubes y sombras.](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
+3. [Creación de una pila de bandas.](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)  
+4. [Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)  
+5. [Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
+6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
+    6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
