@@ -25,7 +25,8 @@ Los programas apoyan el protocolo metodológico del proyecto *Generating a Consi
 
 Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamente:
 
-1. Descarga de imágenes y metadatos.
+[1. Descarga de imágenes y metadatos.](https://github.com/redd-costarica-scripts#1-descarga-de-im%C3%A1genes-y-metadatos)
+[2. Detección de nubes y sombras](https://github.com/redd-costarica-scripts#2-detecci%C3%B3n-de-nubes-y-sombras)
 
 
 ### 1. Descarga de imágenes y metadatos
@@ -71,7 +72,11 @@ D:\img\LC09_L1TP_016052_20220123_20220124_02_T1>dir
 Este paso se realiza con el programa FMask. Debe ejecutarse en la línea de comandos del sistema operativo y en el directorio en el que se encuentran los archivos de la imagen.
 
 **Entradas**:
-- Directorio con archivos de la imagen descargada (ej. `D:\img\LC09_L1TP_016052_20220123_20220124_02_T1`).
+- Directorio con archivos de la imagen descargada. Por ejemplo:
+
+```
+D:\img\LC09_L1TP_016052_20220123_20220124_02_T1
+```
 
 **Procesamiento**:
 - Cambio al directorio en el que se encuentran los archivos de la imagen y ejecución de FMask:
@@ -100,3 +105,29 @@ Los pixeles de este archivo tienen 6 posibles valores:
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/fmask.png)
 **Figura 1**. Imagen con nubes (en blanco) y sombras (en negro) detectadas con FMask.
 
+### 3. Creación de una pila de bandas
+La "pila" (*stack*) de bandas, se utiliza para reunir varias bandas en un solo archivo. Se crea con el programa [gdal_merge.py](https://gdal.org/programs/gdal_merge.html) de GDAL. Está disponible en la opción de menú `Raster - Miscellaneous - Merge` de QGIS. Debe activarse la opción para almacenar cada archivo de entrada en una banda separada del archivo resultante con la pila.
+
+**Entradas**:
+- Archivos con bandas 2-7. Por ejemplo:
+
+```
+LC09_L1TP_016052_20220123_20220124_02_T1_B2.TIF
+LC09_L1TP_016052_20220123_20220124_02_T1_B3.TIF
+LC09_L1TP_016052_20220123_20220124_02_T1_B4.TIF
+LC09_L1TP_016052_20220123_20220124_02_T1_B5.TIF
+LC09_L1TP_016052_20220123_20220124_02_T1_B6.TIF
+LC09_L1TP_016052_20220123_20220124_02_T1_B7.TIF
+```
+
+**Procesamiento**:
+- Ejecución de `gdal_merge.py`, desde la línea de comandos del sistema operativo, o de `Raster - Miscellaneous - Merge` en QGIS.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/pila.png)
+**Figura 2**. Opción de menú `Raster - Miscellaneous - Merge` de QGIS.
+
+**Salidas**:
+- Archivo con pila de bandas.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/pila.png)
+**Figura 3**. Pila de bandas en falso color (4-3-2).
