@@ -25,9 +25,9 @@ Los programas apoyan el protocolo metodológico del proyecto *Generating a Consi
 
 Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamente:
 
-[1. Descarga de imágenes y metadatos.](https://github.com/redd-costarica-scripts#1-descarga-de-im%C3%A1genes-y-metadatos)
-[2. Detección de nubes y sombras](https://github.com/redd-costarica-scripts#2-detecci%C3%B3n-de-nubes-y-sombras)
-
+[1. Descarga de imágenes y metadatos.](https://github.com/redd-costarica-scripts#1-descarga-de-im%C3%A1genes-y-metadatos)  
+[2. Detección de nubes y sombras.](https://github.com/redd-costarica-scripts#2-detecci%C3%B3n-de-nubes-y-sombras)  
+[3. Creación de una pila de bandas.](https://github.com/redd-costarica-scripts#3-creaci%C3%B3n-de-una-pila-de-bandas)  
 
 ### 1. Descarga de imágenes y metadatos
 Para descargar las imágenes, se recomienda el sitio [EarthExplorer](https://earthexplorer.usgs.gov/) u otro similar. Como resultado de la descarga, debe obtenerse un directorio con los archivos correspondientes a las bandas y a los metadatos de la imagen. Por ejemplo:
@@ -123,7 +123,7 @@ LC09_L1TP_016052_20220123_20220124_02_T1_B7.TIF
 **Procesamiento**:
 - Ejecución de `gdal_merge.py`, desde la línea de comandos del sistema operativo, o de `Raster - Miscellaneous - Merge` en QGIS.
 
-![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/pila.png)
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/merge.png)
 **Figura 2**. Opción de menú `Raster - Miscellaneous - Merge` de QGIS.
 
 **Salidas**:
