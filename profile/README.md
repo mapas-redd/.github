@@ -4,25 +4,25 @@ Este es un conjunto de repositorios de código fuente de programas informáticos
 En este documento, se listan los repositorios, se brindan las instrucciones para la instalación de las herramientas informáticas necesarias y se describe el protocolo metodológico para el uso de los programas durante el proceso de elaboración de los mapas.
 
 ## Contenidos
-[1. Repositorios](https://github.com/redd-costarica-scripts#repositorios)
-    - [1.1. redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts#11-redd-costarica-scripts-qgis)
-    - [1.2. redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts#12-redd-costarica-randomforest-r)
-    - [1.3. redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts#13-redd-costarica-scripts-bat)
-[2. Herramientas informáticas](https://github.com/redd-costarica-scripts#herramientas-inform%C3%A1ticas)
-    - [2.1. QGIS](https://github.com/redd-costarica-scripts#21-qgis)
-    - [2.2. Orfeo Toolbox](https://github.com/redd-costarica-scripts#22-orfeo-toolbox)
-    - [2.3. FMask](https://github.com/redd-costarica-scripts#23-fmask)
-    - [2.4. R y RStudio](https://github.com/redd-costarica-scripts#24-r-y-rstudio)
-    - [2.5. Git](https://github.com/redd-costarica-scripts#25-git)
-    - [2.6. Complemento de QGIS `REDD+ Costa Rica`](https://github.com/redd-costarica-scripts#26-complemento-de-qgis-redd-costa-rica)
-[3. Protocolo metodológico](https://github.com/redd-costarica-scripts#protocolo-metodol%C3%B3gico)
-    - [3.1. Descarga de imágenes y metadatos](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)
-    - [3.2. Detección de nubes y sombras](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)
-    - [3.3. Creación de una pila de bandas](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)
-    - [3.4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)
-    - [3.5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)
-    - [3.6. Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)
-        - [3.6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)
+[1. Repositorios](https://github.com/redd-costarica-scripts#repositorios)  
+- [1.1. redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts#11-redd-costarica-scripts-qgis)  
+- [1.2. redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts#12-redd-costarica-randomforest-r)  
+- [1.3. redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts#13-redd-costarica-scripts-bat)  
+[2. Herramientas informáticas](https://github.com/redd-costarica-scripts#herramientas-inform%C3%A1ticas)  
+- [2.1. QGIS](https://github.com/redd-costarica-scripts#21-qgis)  
+- [2.2. Orfeo Toolbox](https://github.com/redd-costarica-scripts#22-orfeo-toolbox)  
+- [2.3. FMask](https://github.com/redd-costarica-scripts#23-fmask)  
+- [2.4. R y RStudio](https://github.com/redd-costarica-scripts#24-r-y-rstudio)  
+- [2.5. Git](https://github.com/redd-costarica-scripts#25-git)  
+- [2.6. Complemento de QGIS `REDD+ Costa Rica`](https://github.com/redd-costarica-scripts#26-complemento-de-qgis-redd-costa-rica)  
+[3. Protocolo metodológico](https://github.com/redd-costarica-scripts#protocolo-metodol%C3%B3gico)  
+- [3.1. Descarga de imágenes y metadatos](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)  
+- [3.2. Detección de nubes y sombras](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
+- [3.3. Creación de una pila de bandas](https://github.com/redd-costarica-scripts#33-creaci%C3%B3n-de-una-pila-de-bandas)  
+- [3.4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)  
+- [3.5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
+- [3.6. Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
+        - [3.6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -84,7 +84,7 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 [4. Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)  
 [5. Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
 [6. Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
-    - [6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)
+[6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
