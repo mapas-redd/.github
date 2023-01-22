@@ -1,16 +1,20 @@
-# Scripts para la elaboración de mapas de uso y cobertura de la tierra en el contexto de REDD+
-Esta organización contiene un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para la elaboración de mapas de uso y cobertura de la tierra, en el contexto del mecanismo de Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+).
+# Scripts para la elaboración de mapas de uso y cobertura de la tierra de Costa Rica en el contexto de REDD+
+Este es un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para la elaboración de mapas de uso y cobertura de la tierra, en el contexto del mecanismo de Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+).
 
 En este documento, se listan los repositorios, se brindan las instrucciones para la instalación de las herramientas informáticas necesarias y se describe el protocolo metodológico para el uso de los programas durante el proceso de elaboración de los mapas.
 
 ## Contenidos
 - [1. Repositorios](https://github.com/redd-costarica-scripts#repositorios)
+    - [1.1. redd-costarica-scripts-qgis]()
+    - [1.2. redd-costarica-randomforest-r]()
+    - [1.3. redd-costarica-scripts-bat]()
 - [2. Herramientas informáticas](https://github.com/redd-costarica-scripts#herramientas-inform%C3%A1ticas)
-    - [2.1. Sistemas de información geográfica]()
-    - [2.2. Bibliotecas y aplicaciones para teledetección]()
-    - [2.3. Lenguajes de programación]()
-    - [2.4. Sistemas de control de versiones]()
-    - [2.5. 2.5. Complemento `REDD+ Costa Rica`]()
+    - [2.1. QGIS]()
+    - [2.2. Orfeo Toolbox]()
+    - [2.3. FMask]()
+    - [2.4. R y RStudio]()
+    - [2.5. Git]()
+    - [2.6. Complemento de QGIS `REDD+ Costa Rica`]()
 - [3. Protocolo metodológico](https://github.com/redd-costarica-scripts#protocolo-metodol%C3%B3gico)
     - [3.1. Descarga de imágenes y metadatos](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)
     - [3.2. Detección de nubes y sombras](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)
@@ -19,28 +23,35 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
 
-- [redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis): programas para ejecutarse en el sistema de información geográfica QGIS. Se agrupan en un complemento llamado `REDD+ Costa Rica`.
-- [redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r): programa en el lenguaje R que implementa el algoritmo de clasificación Random Forest.
-- [redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat): programas para archivos `.bat` del sistema operativo Microsoft Windows.
+### 1.1. redd-costarica-scripts-qgis
+[redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis) contiene programas para ejecutarse en el sistema de información geográfica QGIS. Se agrupan en un complemento llamado `REDD+ Costa Rica`.
+
+### 1.2. redd-costarica-randomforest-r
+[redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r) contiene un programa en el lenguaje R que implementa el algoritmo de clasificación Random Forest.
+
+### 1.3. redd-costarica-scripts-bat
+[redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat) contiene programas para procesamiento por lotes en archivos `.bat` del sistema operativo Microsoft Windows.
 
 ## 2. Herramientas informáticas
 Para utilizar los programas, es necesario instalar diferentes herramientas que incluyen sistemas de información geográfica (SIG), bibliotecas y aplicaciones para teledetección, lenguajes de programación y sistemas de control de versiones. También un complemento de QGIS llamado `REDD+ Costa Rica`, el cual fue desarrollado como parte de esta iniciativa.
 
-### 2.1. Sistemas de información geográfica 
-- [QGIS](https://qgis.org): sistema de información geográfica. En este proyecto, se utilizó la **versión 3.22.11 Białowieża LTR**. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de QGIS](https://qgis.org/en/site/forusers/download.html). Para el caso de Microsoft Windows, se recomienda el instalador [OSGeo4W](https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer).
+### 2.1. QGIS
+[QGIS](https://qgis.org) es un sistema de información geográfica de escritorio. En este proyecto, se utilizó la **versión 3.22.11 Białowieża LTR**. Para su instalación, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de QGIS](https://qgis.org/en/site/forusers/download.html). Para el caso de Microsoft Windows, se recomienda el instalador [OSGeo4W](https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer).
 
-### 2.2. Bibliotecas y aplicaciones para teledetección
-- [Orfeo Toolbox (OTB)](http://orfeo-toolbox.org/): biblioteca para procesamiento de imágenes de satélite. En este proyecto, se utilizó la **versión 8.1.0**. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de OTB](https://www.orfeo-toolbox.org/download/). En QGIS, debe configurar la [interfaz para OTB](https://www.orfeo-toolbox.org/CookBook/QGISInterface.html).
-- [FMask](https://github.com/GERSL/Fmask): software para detección de nubes y sombras en imágenes satelitales. En este proyecto, se utilizó la **versión 4.6**. Siga las instrucciones correspondientes a su sistema operativo.
+### 2.2. Orfeo Toolbox
+[Orfeo Toolbox (OTB)](http://orfeo-toolbox.org/) es una biblioteca para procesamiento de imágenes de satélite. En este proyecto, se utilizó la **versión 8.1.0**. Para instalarla, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de OTB](https://www.orfeo-toolbox.org/download/). En QGIS, debe configurar la [interfaz para OTB](https://www.orfeo-toolbox.org/CookBook/QGISInterface.html).
 
-### 2.3. Lenguajes de programación
-- [R](https://www.r-project.org/) y [RStudio Desktop](https://www.rstudio.com/products/rstudio/): lenguaje de programación para análisis estadístico y ambiente de desarrollo integrado, respectivamente. En este proyecto, se utilizó la **versión 4.2.1 de R** y la **versión 2022.07.1+554 de RStudio Desktop**. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de R](https://cloud.r-project.org/) y en la [página de descargas de RStudio](https://www.rstudio.com/products/rstudio/download/).
+### 2.3. FMask
+[FMask](https://github.com/GERSL/Fmask) es un programa para detección de nubes y sombras en imágenes satelitales. En este proyecto, se utilizó la **versión 4.6**. Para instalarla, siga las instrucciones correspondientes a su sistema operativo.
 
-### 2.4. Sistemas de control de versiones
-[Git](https://git-scm.com/): sistema de control de versiones distribuido. Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas](https://git-scm.com/downloads). La instalación de Git es necesaria solamente para usuarios avanzados que deseen manejar el código fuente de los programas como, por ejemplo, los del complemento `REDD+ Costa Rica`.
+### 2.4. R y RStudio
+[R](https://www.r-project.org/) es un lenguaje de programación para análisis estadístico y [RStudio Desktop](https://www.rstudio.com/products/rstudio/) es un ambiente de desarrollo integrado para R. En este proyecto, se utilizó la **versión 4.2.1 de R** y la **versión 2022.07.1+554 de RStudio Desktop**. Para instalarlos, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas de R](https://cloud.r-project.org/) y en la [página de descargas de RStudio](https://www.rstudio.com/products/rstudio/download/).
 
-### 2.5. Complemento `REDD+ Costa Rica`
-Es un complemento (*plugin*) de QGIS desarrollado con el marco de trabajo `Processing`. Puede descargarse como un [archivo ZIP](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis/archive/refs/heads/main.zip) e instalarse en QGIS con la opción de menú `Plugins - Manage and Install Plugins... - Install from ZIP`.
+### 2.5. Git
+[Git](https://git-scm.com/) es un sistema de control de versiones distribuido. Para su instalación, siga las instrucciones correspondientes a su sistema operativo en la [página de descargas](https://git-scm.com/downloads). La instalación de Git es necesaria solamente para usuarios avanzados que deseen manejar el código fuente de los programas como, por ejemplo, los del complemento `REDD+ Costa Rica`.
+
+### 2.6. Complemento de QGIS `REDD+ Costa Rica`
+[`REDD+ Costa Rica`](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis) es un complemento (*plugin*) de QGIS desarrollado con el marco de trabajo `Processing`. Puede descargarse como un [archivo ZIP](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis/archive/refs/heads/main.zip) e instalarse en QGIS con la opción de menú `Plugins - Manage and Install Plugins... - Install from ZIP`.
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/plugin-install-zip.png)  
 **Figura 1**. Instalación del complemento `REDD+ Costa Rica` a partir de un archivo ZIP.
@@ -50,13 +61,13 @@ Después de presionar el botón `Install Plugin`, el complemento se instalará y
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/processing-toolbox-redd.png)  
 **Figura 2**. Complemento `REDD+ Costa Rica` en la barra de herramientas de `Processing`.
 
-Si se desea editar u observar el código fuente, el repositorio del complemento `REDD+ Costa Rica` puede clonarse con el comando:
+Si se desea editar u observar el código fuente, el repositorio del complemento puede clonarse con el comando:
 
 ```shell
 git clone https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis.git
 ```
 
-Para que el directorio resultante (`redd-costarica-scripts-qgis`), funcione también en producción, debe ser ubicado en el directorio de complementos de QGIS (ej. `D:\Users\mfvargas\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins`).
+Para que el directorio resultante (`redd-costarica-scripts-qgis`) funcione también en producción, debe colocarse en el directorio de complementos de QGIS (ej. `D:\Users\mfvargas\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins`).
 
 ## 3. Protocolo metodológico
 Los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid.
