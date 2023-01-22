@@ -94,6 +94,6 @@ Los pixeles de este archivo tienen 6 posibles valores:
 4 = nubes  
 255 = sin observación  
 
-![](img/fmask.png)
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/fmask.png)
 Imagen: Nubes y sombras detectadas con FMask.
 
