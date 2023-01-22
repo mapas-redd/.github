@@ -20,11 +20,12 @@ Para utilizar los programas, es necesario instalar las siguientes herramientas:
 
 Adicionalmente, para usuarios avanzados, se recomienda instalar el sistema para control de versiones [Git](https://git-scm.com/). Siga las instrucciones correspondientes a su sistema operativo en la [página de descargas](https://git-scm.com/downloads).
 
-
 ## Protocolo metodológico
 Los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid.
 
-Este protocolo consiste de los pasos que se describen a continuación.
+Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamente:
+
+1. Descarga de imágenes y metadatos.
 
 
 ### 1. Descarga de imágenes y metadatos
@@ -65,3 +66,34 @@ D:\img\LC09_L1TP_016052_20220123_20220124_02_T1>dir
 08/25/2022  06:11 PM         3,433,766 LC09_L1TP_016052_20220123_20220124_02_T1_VZA.TIF
               24 File(s)  1,252,131,025 bytes
 ```
+
+### 2. Detección de nubes y sombras
+Este paso se realiza con el programa FMask. Debe ejecutarse en la línea de comandos del sistema operativo y desde el directorio en el que se encuentran los archivos de la imagen.
+
+Entradas:
+- Directorio con archivos de la imagen descargada.
+
+Salidas:
+- Archivo raster con pixeles marcados como tierra, agua, nubes o sombras.
+
+```shell
+cd LC09_L1TP_016052_20220123_20220124_02_T1
+"C:\Program Files\GERS\Fmask_4_6\application\Fmask_4_6.exe"
+```
+
+```
+09/18/2022  06:41 PM         1,691,740 LC09_L1TP_016052_20220123_20220124_02_T1_Fmask4.tif
+```
+
+Los pixeles de este archivo tienen 6 posibles valores:
+
+0 = tierra  
+1 = agua  
+2 = sombra de nubes  
+3 = nieve  
+4 = nubes  
+255 = sin observación  
+
+![](img/fmask.png)
+Imagen: Nubes y sombras detectadas con FMask.
+
