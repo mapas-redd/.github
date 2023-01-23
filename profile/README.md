@@ -22,7 +22,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.4. [Cálculo de la reflectancia](https://github.com/redd-costarica-scripts#34-c%C3%A1lculo-de-la-reflectancia)  
     3.5. [Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
     3.6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
-        3.6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
+        - 3.6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
