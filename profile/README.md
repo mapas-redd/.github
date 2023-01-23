@@ -25,7 +25,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
         - 3.6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
         - 3.6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
         - 3.6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
-        - 3.6.4. [Ejecución de `radcal.py`]()  
+        - 3.6.4. [Ejecución de `radcal.py`](https://github.com/redd-costarica-scripts#364-ejecuci%C3%B3n-de-radcalpy)  
+    3.7. [Cálculo de índices de vegetación y textura]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -90,7 +91,8 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
     6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
     6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
     6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
-    6.4. [Ejecución de `radcal.py`]()  
+    6.4. [Ejecución de `radcal.py`](https://github.com/redd-costarica-scripts#364-ejecuci%C3%B3n-de-radcalpy)  
+7. [Cálculo de índices de vegetación y textura]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -374,3 +376,35 @@ RADIOMETRICA.tif
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/radiometrica.png)   
 **Figura 14**. Imagen con normalización radiométrica en falso color (4-3-2).
+
+### 3.7. Cálculo de índices de vegetación y textura
+En este paso, se calculan dos tipos de índices:
+
+- Índice de vegetación de diferencia normalizada (NDVI): mide el estado de salud de la vegetación, con base en la medición de la radiación que las plantas emiten o reflejan.
+- Índices de textura de Haralick: se calculan los índices: “Mean”, “Sum Entropy”, “Diference of Entropies”, “Diference of Variances”, “IC1”, e “IC2”.
+
+El cálculo de los índices se realiza con el algoritmo `Índices de vegetación y textura` del complemento `REDD+ Costa Rica`.
+
+**Entradas**:
+- Imagen con normalización radiométrica.
+
+```
+RADIOMETRICA.tif
+```
+
+**Procesamiento**:
+- Ejecución del algoritmo `Índices de vegetación y textura` del complemento `REDD+ Costa Rica` de QGIS.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/calcular-indices-vegetacion-textura.png)  
+**Figura 15**. Algoritmo `Índices de vegetación y textura` del complemento `REDD+ Costa Rica`.
+
+**Salidas**:
+- Índice de vegetación NDVI.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/ndvi.png)   
+**Figura 16**. Índice de vegetación NDVI.
+
+- Índice de vegetación NDVI.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/haralick.png)   
+**Figura 17**. Índices de textura de Haralick.
