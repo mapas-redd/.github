@@ -27,7 +27,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
         - 3.6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
         - 3.6.4. [Ejecución de `radcal.py`](https://github.com/redd-costarica-scripts#364-ejecuci%C3%B3n-de-radcalpy)  
     3.7. [Cálculo de índices de vegetación y textura](https://github.com/redd-costarica-scripts#37-c%C3%A1lculo-de-%C3%ADndices-de-vegetaci%C3%B3n-y-textura)  
-    3.8. [Creación de máscaras de nubes y sombras]()  
+    3.8. [Creación de máscaras de nubes y sombras](https://github.com/redd-costarica-scripts#38-creaci%C3%B3n-de-m%C3%A1scaras-de-nubes-y-sombras)  
+    3.9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -94,7 +95,8 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
     6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
     6.4. [Ejecución de `radcal.py`](https://github.com/redd-costarica-scripts#364-ejecuci%C3%B3n-de-radcalpy)  
 7. [Cálculo de índices de vegetación y textura](https://github.com/redd-costarica-scripts#37-c%C3%A1lculo-de-%C3%ADndices-de-vegetaci%C3%B3n-y-textura)  
-8. [Creación de máscaras de nubes y sombras]()  
+8. [Creación de máscaras de nubes y sombras](https://github.com/redd-costarica-scripts#38-creaci%C3%B3n-de-m%C3%A1scaras-de-nubes-y-sombras)  
+9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país]()
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -436,3 +438,31 @@ Esta tarea se realiza con la herramienta `r.reclass` del marco de trabajo `Proce
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/mascara-sombras.png)   
 **Figura 20**. Máscara de sombras.
+
+### 3.9. Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país
+Esta operación se realiza para reducir el área de trabajo y mejorar la clasificación posterior de las imágenes. Al igual que en el caso de las máscaras vectoriales, el contorno del país se divide de acuerdo con los paths ("pasadas") correspondientes a los recorridos de Landsat: P14 (este), P15 (centro) y P16 (oeste), por lo que cada imagen se recorta con respecto a la máscara de su *path*.
+
+Este paso se realiza con la herramienta `r.mapcalc.simple` del marco de trabajo `Processing` de QGIS.
+
+**Entradas**:
+- (A) Máscara de nubes, creada en el paso 8 (nubes = 1, otros = 0).
+- (A) Máscara de sombras, creada en el paso 8 (sombras = 1, otros = 0).
+- (B) Máscara raster para la "pasada" correspondiente (P14, P15, P16) (fuera del país = 1, dentro del país = 0).
+- Fórmula para recortar las máscaras: `if(A+B == 2, 1, A+B)`.
+
+**Procesamiento**:
+- Ejecución de la herramienta `r.mapcalc.simple` del marco de trabajo `Processing` de QGIS. Debe ejecutarse dos veces: una para recortar la máscara de nubes y otra para recortar la máscara de sombras.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/rmapcalcsimple.png)  
+**Figura 21**. Herramienta `r.mapcalc.simple` de `Processing` de QGIS.
+
+**Salidas**:
+- Máscara de nubes recortada (nubes o fuera del país = 1, otros = 0).
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/mascara-nubes-recortada.png)   
+**Figura 22**. Máscara de nubes recortada.
+
+- Máscara de sombras recortada (sombras o fuera del país = 1, otros = 0).
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/mascara-sombras-recortada.png)   
+**Figura 23**. Máscara de nubes recortada.
