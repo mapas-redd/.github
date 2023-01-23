@@ -23,7 +23,9 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.5. [Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
     3.6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
         - 3.6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
-        - 3.6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país]()  
+        - 3.6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
+        - 3.6.3. [Ejecución de `imad.py`]()  
+        - 3.6.4. [Ejecución de `radcal.py`]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -86,7 +88,9 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 5. [Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
 6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
     6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
-    6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país]()  
+    6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
+    6.3. [Ejecución de `imad.py`]()  
+    6.4. [Ejecución de `radcal.py`]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -240,7 +244,7 @@ Esta tarea se realiza con el algoritmo `Normalización horaria` del complemento 
 ### 3.6. Normalización radiométrica
 La normalización radiométrica se realiza para corregir diferencias entre imágenes, causadas por variaciones en las condiciones atmosféricas y de iluminación. La implementación usada aquí está basada en el algoritmo IR-MAD (Iteratively Reweighted Multivariante ALteration Detection), propuesto por Canty & Nielsen. Este método se basa en la localización de pixeles invariantes entre la imagen que se desea corregir y una imagen de referencia.
 
-Este paso se ejecuta con el programa `imad.py`, el cual se distribuye junto con el complemento `REDD+ Costa Rica`. Antes de ejecutar este programa, tanto la imagen de referencia como la imagen que desea normalizarse, deben recortarse con la máscara vectorial del contorno del país, en formato vectorial. Para el caso de Costa Rica, el país se divide en los *paths* ("pasadas") correspondientes a los recorridos de Landsat: P14 (este), P15 (centro) y P16 (oeste), por lo que cada imagen se recorta con respecto a su *path*.
+Este paso se ejecuta con los programas `imad.py` y `radcal.py`, los cuales se distribuyen junto con el complemento `REDD+ Costa Rica`. Antes de ejecutar estos programas, tanto la imagen de referencia como la imagen que desea normalizarse, deben recortarse con la máscara vectorial del contorno del país, en formato vectorial. Para el caso de Costa Rica, el contorno del país se divide de acuerdo con los *paths* ("pasadas") correspondientes a los recorridos de Landsat: P14 (este), P15 (centro) y P16 (oeste), por lo que cada imagen se recorta con respecto al contorno de su *path*.
 
 #### 3.6.1. Recorte de la imagen de referencia con la máscara vectorial del contorno del país
 Se realiza con la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS.
@@ -279,3 +283,41 @@ Se realiza con la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco d
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/horaria-recortada.png)   
 **Figura 13**. Imagen con normalización horaria recortada en falso color (4-3-2).
+
+#### 3.6.3. Ejecución de `imad.py`
+Se ejecuta desde la consola de Python en QGIS o (en Microsoft Windows) desde la 
+línea de comandos de `OSGeo4W Shell` (esta opción permite visualizar mejor el progreso del script y los mensajes de error). **En ambos casos, deben modificarse las rutas de los archivos de entrada y salida ubicados al inicio del script**. Si se ejecuta desde QGIS, debe abrirse el script en el editor de la consola de Python y presionar el botón `Run Script`.
+
+**Entradas**:
+- Imagen de referencia.
+- Imagen a normalizar.
+
+Las rutas y nombres de estos archivos (así como los del archivo de salida), deben modiricarse en el archivo `imad.py`. Por ejemplo:
+
+```python
+# Imagen de referencia
+referencia = "D:/redd/referencia/P16_r52_2014057_utm16-RECORTADA.TIF"
+# Imagen a normalizar
+imagen_a_normalizar = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/LC09_L1TP_016052_20220123_20220124_02_T1-HORARIA_RECORTADA.tif"
+# Archivo de salida
+outfile = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/IMAD.tif"
+```
+
+**Procesamiento**:
+- Ejecución de `imad.py`.
+
+Si se ejecuta desde `OSGeo4W Shell`:
+```shell
+cd redd-costarica-scripts-qgis
+python imad.py
+```
+
+**Salidas:**
+- Archivo de salida de `imad.py`. Por ejemplo:
+
+```
+IMAD.TIF
+```
+
+No se muestra una imagen de esta salida, por ser un producto intermedio.
+
