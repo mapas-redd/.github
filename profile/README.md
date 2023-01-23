@@ -26,7 +26,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
         - 3.6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
         - 3.6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
         - 3.6.4. [Ejecución de `radcal.py`](https://github.com/redd-costarica-scripts#364-ejecuci%C3%B3n-de-radcalpy)  
-    3.7. [Cálculo de índices de vegetación y textura]()  
+    3.7. [Cálculo de índices de vegetación y textura](https://github.com/redd-costarica-scripts#37-c%C3%A1lculo-de-%C3%ADndices-de-vegetaci%C3%B3n-y-textura)  
+    3.8. [Creación de máscaras de nubes y sombras]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -92,7 +93,8 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
     6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
     6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
     6.4. [Ejecución de `radcal.py`](https://github.com/redd-costarica-scripts#364-ejecuci%C3%B3n-de-radcalpy)  
-7. [Cálculo de índices de vegetación y textura]()  
+7. [Cálculo de índices de vegetación y textura](https://github.com/redd-costarica-scripts#37-c%C3%A1lculo-de-%C3%ADndices-de-vegetaci%C3%B3n-y-textura)  
+8. [Creación de máscaras de nubes y sombras]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -154,7 +156,7 @@ cd D:\img\LC09_L1TP_016052_20220123_20220124_02_T1
 ```
 
 **Salidas**:
-- Archivo raster con pixeles marcados como tierra, agua, nubes o sombras.
+- Imagen con pixeles marcados como tierra, agua, nubes o sombras.
 
 ```
 09/18/2022  06:41 PM         1,691,740 LC09_L1TP_016052_20220123_20220124_02_T1_Fmask4.tif
@@ -404,7 +406,33 @@ RADIOMETRICA.tif
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/ndvi.png)   
 **Figura 16**. Índice de vegetación NDVI.
 
-- Índice de vegetación NDVI.
+- Índices de textura de Haralick.
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/haralick.png)   
 **Figura 17**. Índices de textura de Haralick.
+
+### 3.8. Creación de máscaras de nubes y sombras
+En este paso, la imagen generada con FMask en el paso 2 (detección de nubes y sombras), se utiliza para generar una imagen con una máscara de nubes y otra con una máscara de sombras.
+
+Esta tarea se realiza con la herramienta `r.reclass` del marco de trabajo `Processing` de QGIS.
+
+**Entradas**:
+- Imagen con nubes y sombras generada en el paso 2.
+- Archivos con reglas.
+
+**Procesamiento**:
+- Ejecución de la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS. Debe ejecutarse dos veces: una para generar la máscara de nubes y otra para generar la máscara de sombras.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/reclass.png)  
+**Figura 18**. Herramienta `r.reclass` del marco de trabajo `Processing` de QGIS.
+
+**Salidas**:
+- Máscara de nubes (nubes = 1, otros = 0).
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/mascara-nubes.png)   
+**Figura 19**. Máscara de nubes.
+
+- Máscara de sombras (sombras = 1, otros = 0).
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/mascara-sombras.png)   
+**Figura 20**. Máscara de sombras.
