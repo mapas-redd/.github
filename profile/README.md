@@ -24,7 +24,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
         - 3.6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
         - 3.6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
-        - 3.6.3. [Ejecución de `imad.py`]()  
+        - 3.6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
         - 3.6.4. [Ejecución de `radcal.py`]()  
 
 ## 1. Repositorios
@@ -89,7 +89,7 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
     6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
     6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#362-recorte-de-la-imagen-con-normalizaci%C3%B3n-horaria-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
-    6.3. [Ejecución de `imad.py`]()  
+    6.3. [Ejecución de `imad.py`](https://github.com/redd-costarica-scripts#363-ejecuci%C3%B3n-de-imadpy)  
     6.4. [Ejecución de `radcal.py`]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
@@ -289,15 +289,15 @@ Se ejecuta desde la consola de Python en QGIS o (en Microsoft Windows) desde la
 línea de comandos de `OSGeo4W Shell` (esta opción permite visualizar mejor el progreso del script y los mensajes de error). **En ambos casos, deben modificarse las rutas de los archivos de entrada y salida ubicados al inicio del script**. Si se ejecuta desde QGIS, debe abrirse el script en el editor de la consola de Python y presionar el botón `Run Script`.
 
 **Entradas**:
-- Imagen de referencia.
-- Imagen a normalizar.
+- Imagen de referencia recortada.
+- Imagen a normalizar recortada.
 
 Las rutas y nombres de estos archivos (así como los del archivo de salida), deben modiricarse en el archivo `imad.py`. Por ejemplo:
 
 ```python
-# Imagen de referencia
+# Imagen de referencia recortada
 referencia = "D:/redd/referencia/P16_r52_2014057_utm16-RECORTADA.TIF"
-# Imagen a normalizar
+# Imagen a normalizar recortada
 imagen_a_normalizar = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/LC09_L1TP_016052_20220123_20220124_02_T1-HORARIA_RECORTADA.tif"
 # Archivo de salida
 outfile = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/IMAD.tif"
@@ -313,7 +313,7 @@ python imad.py
 ```
 
 **Salidas:**
-- Archivo de salida de `imad.py`. Por ejemplo:
+- Imagen de salida de `imad.py`. Por ejemplo:
 
 ```
 IMAD.TIF
@@ -321,3 +321,56 @@ IMAD.TIF
 
 No se muestra una imagen de esta salida, por ser un producto intermedio.
 
+#### 3.6.4. Ejecución de `radcal.py`
+Se ejecuta desde la consola de Python en QGIS o (en Microsoft Windows) desde la 
+línea de comandos de `OSGeo4W Shell` (esta opción permite visualizar mejor el progreso del script y los mensajes de error). **En ambos casos, deben modificarse las rutas de los archivos de entrada y salida ubicados al inicio del script**. Si se ejecuta desde QGIS, debe abrirse el script en el editor de la consola de Python y presionar el botón `Run Script`.
+
+**Entradas**:
+- Imagen de referencia recortada.
+- Imagen a normalizar recortada.
+- Imagen con normalización horaria.
+- Imagen de salida de `imad.py`.
+
+Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modiricarse en el archivo `radcal.py`. Por ejemplo:
+
+```python
+# Imagen de referencia recortada
+referencia = "D:/redd/referencia/P16_r52_2014057_utm16-RECORTADA.TIF"
+# Imagen a normalizar recortada
+imagen_a_normalizar = imagen_a_normalizar = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/LC09_L1TP_016052_20220123_20220124_02_T1-HORARIA_RECORTADA.tif"
+# Imagen con normalización horaria
+fsfile = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/LC09_L1TP_016052_20220123_20220124_02_T1-HORARIA.tif"
+# Imagen de salida de imad.py
+iMad = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/IMAD.tif"
+ncpThresh = 0.95
+format_1GTiff_2PCIDSK_3HFA_4_ENVI = 1
+# Imagen de salida de radcal.py
+outfile = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/RADCAL.tif"
+# Imagen con normalización radiométrica
+fsoutfile = "D:/redd/img/LC09_L1TP_016052_20220123_20220124_02_T1-SALIDA/RADIOMETRICA.tif"
+```
+
+**Procesamiento**:
+- Ejecución de `radcal.py`.
+
+Si se ejecuta desde `OSGeo4W Shell`:
+```shell
+cd redd-costarica-scripts-qgis
+python imad.py
+```
+
+**Salidas:**
+- Imagen de salida de `radcal.py`. Por ejemplo:
+
+```
+RADCAL.TIF
+```
+
+- Imagen con normalización radiométrica. Por ejemplo:
+
+```
+RADIOMETRICA.tif
+```
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/radiometrica.png)   
+**Figura 14**. Imagen con normalización radiométrica en falso color (4-3-2).
