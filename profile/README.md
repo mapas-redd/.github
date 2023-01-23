@@ -23,6 +23,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.5. [Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
     3.6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
         - 3.6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
+        - 3.6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -85,6 +86,7 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 5. [Normalización horaria](https://github.com/redd-costarica-scripts#35-normalizaci%C3%B3n-horaria)  
 6. [Normalización radiométrica](https://github.com/redd-costarica-scripts#36-normalizaci%C3%B3n-radiom%C3%A9trica)  
     6.1. [Recorte de la imagen de referencia con la máscara vectorial del contorno del país](https://github.com/redd-costarica-scripts#361-recorte-de-la-imagen-de-referencia-con-la-m%C3%A1scara-vectorial-del-contorno-del-pa%C3%ADs)  
+    6.2. [Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -258,3 +260,22 @@ Se realiza con la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco d
 
 ![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/referencia-p16-recortada.png)   
 **Figura 11**. Imagen de referencia recortada en falso color (4-3-2).
+
+#### 3.6.2. Recorte de la imagen con normalización horaria con la máscara vectorial del contorno del país
+Se realiza con la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS.
+
+**Entradas**:
+- Imagen con normalización horaria.
+- Máscara vectorial para la "pasada" correspondiente (P14, P15, P16).
+
+**Procesamiento**:
+- Ejecución de la herramienta `Clip raster by Mask Layer (gdalwarp)` del marco de trabajo `Processing` de QGIS.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/recortar-horaria-01.png)  
+**Figura 12**. Herramienta `Clip raster by Mask Layer (gdalwarp)` de `Processing` de QGIS.
+
+**Salidas**:
+- Imagen con normalización horaria recortada.
+
+![](https://github.com/redd-costarica-scripts/.github/blob/master/profile/img/horaria-recortada.png)   
+**Figura 13**. Imagen con normalización horaria recortada en falso color (4-3-2).
