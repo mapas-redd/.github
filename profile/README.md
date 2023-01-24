@@ -15,6 +15,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     2.4. [R y RStudio](https://github.com/redd-costarica-scripts#24-r-y-rstudio)  
     2.5. [Git](https://github.com/redd-costarica-scripts#25-git)  
     2.6. [Complemento de QGIS `REDD+ Costa Rica`](https://github.com/redd-costarica-scripts#26-complemento-de-qgis-redd-costa-rica)  
+    2.7. [Programas para procesamiento por lotes]()  
 3. [Protocolo metodológico](https://github.com/redd-costarica-scripts#3-protocolo-metodol%C3%B3gico)  
     3.1. [Descarga de imágenes y metadatos](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)  
     3.2. [Detección de nubes y sombras](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
@@ -29,7 +30,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.7. [Cálculo de índices de vegetación y textura](https://github.com/redd-costarica-scripts#37-c%C3%A1lculo-de-%C3%ADndices-de-vegetaci%C3%B3n-y-textura)  
     3.8. [Creación de máscaras de nubes y sombras](https://github.com/redd-costarica-scripts#38-creaci%C3%B3n-de-m%C3%A1scaras-de-nubes-y-sombras)  
     3.9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país](https://github.com/redd-costarica-scripts#39-recorte-de-las-m%C3%A1scaras-de-nubes-y-sombras-con-la-m%C3%A1scara-raster-del-contorno-del-pa%C3%ADs)  
-    3.10. [Eliminación de nubes y sombras]()
+    3.10. [Eliminación de nubes y sombras](https://github.com/redd-costarica-scripts#310-eliminaci%C3%B3n-de-nubes-y-sombras)  
+    3.11. [Combinación de bandas]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -80,6 +82,13 @@ git clone https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis.
 
 Para que el directorio resultante (`redd-costarica-scripts-qgis`) funcione también en producción, debe colocarse en el directorio de complementos de QGIS (ej. `D:\Users\mfvargas\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins`).
 
+### 2.7. Programas para procesamiento por lotes
+Pueden descargarse como un [archivo ZIP](https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat/archive/refs/heads/main.zip). Si se desea editar u observar el código fuente, el repositorio puede clonarse con el comando:
+
+```shell
+git clone https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat.git
+```
+
 ## 3. Protocolo metodológico
 Los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid.
 
@@ -98,7 +107,8 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 7. [Cálculo de índices de vegetación y textura](https://github.com/redd-costarica-scripts#37-c%C3%A1lculo-de-%C3%ADndices-de-vegetaci%C3%B3n-y-textura)  
 8. [Creación de máscaras de nubes y sombras](https://github.com/redd-costarica-scripts#38-creaci%C3%B3n-de-m%C3%A1scaras-de-nubes-y-sombras)  
 9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país](https://github.com/redd-costarica-scripts#39-recorte-de-las-m%C3%A1scaras-de-nubes-y-sombras-con-la-m%C3%A1scara-raster-del-contorno-del-pa%C3%ADs)  
-10. [Eliminación de nubes y sombras]()
+10. [Eliminación de nubes y sombras](https://github.com/redd-costarica-scripts#310-eliminaci%C3%B3n-de-nubes-y-sombras)  
+11. [Combinación de bandas]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -507,3 +517,27 @@ python nubessombras.py
 **Salidas:**
 - Imagen sin nubes y sombras
 
+### 3.11. Combinación de bandas
+En este paso, se combinan las salidas de los pasos anteriores, para construir un archivo con todas las bandas raster necesarias para ejecutar la clasificación en el paso 13.
+
+Este paso se realiza con el programa `combinacion.py` (contenido en el repositorio de programas de procesamiento por lotes), el cual se ejecuta desde la línea de comandos del sistema operativo.
+
+**Entradas**:
+- Imagen con normalización radiométrica.
+- Imagen con índice de vegetación NDVI.
+- Imagen con índices de textura.
+- Modelo digital de elevaciones.
+
+Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modiricarse en el archivo `combinacion.py`. Por ejemplo:
+
+```shell
+echo %DATE%
+echo %TIME%
+
+call gdal_merge.bat -o C:\combinacion\LC08_P15_R54_c20b_2021_197.tif -separate -ot Float32 D:\redd\combinacion\radiometrica\LC08_P15_R54_NR_2021_197.tif D:\redd\combinacion\ndvi\LC08_P14_R54_NDVI_2021_197.tif D:\redd\combinacion\sinnubessombras\lc08_p14_r54_2021_197_sin_nubes_sombras.tif D:\redd\combinacion\dem\p15_derivadas_DEM.tif
+```
+
+En el mismo archivo `.bat`, pueden incluirse varios comandos como el anterior, para así generar varias combinaciones con un solo archivo.
+
+**Salidas**:
+- Archivo con combinación de bandas.
