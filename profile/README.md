@@ -31,7 +31,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.8. [Creación de máscaras de nubes y sombras](https://github.com/redd-costarica-scripts#38-creaci%C3%B3n-de-m%C3%A1scaras-de-nubes-y-sombras)  
     3.9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país](https://github.com/redd-costarica-scripts#39-recorte-de-las-m%C3%A1scaras-de-nubes-y-sombras-con-la-m%C3%A1scara-raster-del-contorno-del-pa%C3%ADs)  
     3.10. [Eliminación de nubes y sombras](https://github.com/redd-costarica-scripts#310-eliminaci%C3%B3n-de-nubes-y-sombras)  
-    3.11. [Combinación de bandas]()  
+    3.11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
+    3.12. [Generación de regiones de interés]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -108,7 +109,8 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 8. [Creación de máscaras de nubes y sombras](https://github.com/redd-costarica-scripts#38-creaci%C3%B3n-de-m%C3%A1scaras-de-nubes-y-sombras)  
 9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país](https://github.com/redd-costarica-scripts#39-recorte-de-las-m%C3%A1scaras-de-nubes-y-sombras-con-la-m%C3%A1scara-raster-del-contorno-del-pa%C3%ADs)  
 10. [Eliminación de nubes y sombras](https://github.com/redd-costarica-scripts#310-eliminaci%C3%B3n-de-nubes-y-sombras)  
-11. [Combinación de bandas]()  
+11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
+12. [Generación de regiones de interés]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -541,3 +543,6 @@ En el mismo archivo `.bat`, pueden incluirse varios comandos como el anterior, p
 
 **Salidas**:
 - Archivo con combinación de bandas.
+
+### 3.12. Generación de regiones de interés
+Este paso se realiza sin apoyo de los programas desarrollados.
