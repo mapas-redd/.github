@@ -32,7 +32,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país](https://github.com/redd-costarica-scripts#39-recorte-de-las-m%C3%A1scaras-de-nubes-y-sombras-con-la-m%C3%A1scara-raster-del-contorno-del-pa%C3%ADs)  
     3.10. [Eliminación de nubes y sombras](https://github.com/redd-costarica-scripts#310-eliminaci%C3%B3n-de-nubes-y-sombras)  
     3.11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
-    3.12. [Generación de regiones de interés]()  
+    3.12. [Generación de regiones de interés](https://github.com/redd-costarica-scripts#312-generaci%C3%B3n-de-regiones-de-inter%C3%A9s)  
+    3.13. [Clasificación de las imágenes]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -110,7 +111,8 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 9. [Recorte de las máscaras de nubes y sombras con la máscara raster del contorno del país](https://github.com/redd-costarica-scripts#39-recorte-de-las-m%C3%A1scaras-de-nubes-y-sombras-con-la-m%C3%A1scara-raster-del-contorno-del-pa%C3%ADs)  
 10. [Eliminación de nubes y sombras](https://github.com/redd-costarica-scripts#310-eliminaci%C3%B3n-de-nubes-y-sombras)  
 11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
-12. [Generación de regiones de interés]()  
+12. [Generación de regiones de interés](https://github.com/redd-costarica-scripts#312-generaci%C3%B3n-de-regiones-de-inter%C3%A9s)  
+13. [Clasificación de las imágenes]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -520,17 +522,18 @@ python nubessombras.py
 - Imagen sin nubes y sombras
 
 ### 3.11. Combinación de bandas
-En este paso, se combinan las salidas de los pasos anteriores, para construir un archivo con todas las bandas raster necesarias para ejecutar la clasificación en el paso 13.
+En este paso, se combinan las salidas de los pasos anteriores, para construir un archivo con todas las bandas raster necesarias para ejecutar la clasificación de una imagen, en el paso 13.
 
-Este paso se realiza con el programa `combinacion.py` (contenido en el repositorio de programas de procesamiento por lotes), el cual se ejecuta desde la línea de comandos del sistema operativo.
+Se realiza con el programa `combinacion.bat`, contenido en el repositorio `redd-costarica-scripts-bat`. Este es un programa de procesamiento por lotes (*batch*), que puede procesar múltiples imágenes.
 
 **Entradas**:
+Para cada combinación, se requiere:
 - Imagen con normalización radiométrica.
 - Imagen con índice de vegetación NDVI.
 - Imagen con índices de textura.
 - Modelo digital de elevaciones.
 
-Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modiricarse en el archivo `combinacion.py`. Por ejemplo:
+Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modiricarse en el archivo `combinacion.bat`. Por ejemplo:
 
 ```shell
 echo %DATE%
@@ -541,8 +544,46 @@ call gdal_merge.bat -o C:\combinacion\LC08_P15_R54_c20b_2021_197.tif -separate -
 
 En el mismo archivo `.bat`, pueden incluirse varios comandos como el anterior, para así generar varias combinaciones con un solo archivo.
 
+**Procesamiento**:
+- Ejecución de `combinacion.bat`.
+
+Si se ejecuta desde `OSGeo4W Shell`:
+```shell
+cd redd-costarica-scripts-bat
+combinacion.bat
+```
+
 **Salidas**:
-- Archivo con combinación de bandas.
+- Archivos con combinaciones de bandas.
 
 ### 3.12. Generación de regiones de interés
-Este paso se realiza sin apoyo de los programas desarrollados.
+Este paso se realiza sin apoyo de los programas descritos en este documento. Se utilizan otras aplicaciones, como sistemas de información geográfica (ej. QGIS). Como salida, se obtiene un archivo tipo shapefile `.shp` con las regiones de interés, las cuales se utilizarán como entrada en la clasificación de las imágenes.
+
+### 3.13. Clasificación de las imágenes
+La clasificación se realiza mediante el algoritmo "Random Forest", el cual se implementa con el programa `Script_RandonmForest_clasificacion.R`, contenido en el repositorio `redd-costarica-randomforest-r`.
+
+El programa `Script_RandonmForest_clasificacion.R` puede ejecutarse desde un ambiente de desarrollo integrado, como RStudio, o desde la línea de comandos del sistema operativo, a través del utlitario `Rscript.exe`, el cual se instala junto con el sistema base de R. Opcionalmente, puede utilizarse el programa de procesamiento por lotes `clasificacion.bat`, contenido en el mismo repositorio, para clasificar múltiples imágenes con un solo llamado al programa.
+
+**Entradas:**
+- Imagen a clasificar, con la combinación de 20 bandas generada en el paso 11.
+- Archivo de tipo shapefile `.shp` (y archivos asociados) con las regiones de interés generadas en el paso 12.
+- Cantidad de puntos a muestrear.
+
+Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modiricarse en el archivo `clasificacion.bat`. Por ejemplo:
+
+```shell
+call "C:/Program Files/R/R-4.2.1/bin/x64/Rscript.exe" D:/redd/clasificacion/randomforest.R C:/combinacion/LC08_P15_R54_c20b_2021_197.tif D:/redd/clasificacion/roi/p15_ROI.shp 10000 clases D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.tif D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.shp
+```
+
+**Procesamiento**:
+- Ejecución de `clasificacion.bat`.
+
+Ejecución desde la línea de comandos del sistema operativo:
+```shell
+cd redd-costarica-randomforest-r
+clasificacion.bat
+```
+
+**Salidas**:
+- Imagen clasificada.
+- Archivo de tipo shapefile `.shp` (y archivos asociados) con regiones clasificadas.
