@@ -6,8 +6,8 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
 ## Contenidos
 1. [Repositorios](https://github.com/redd-costarica-scripts#1-repositorios)  
     1.1. [redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts#11-redd-costarica-scripts-qgis)  
-    1.2. [redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts#12-redd-costarica-randomforest-r)  
-    1.3. [redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts#13-redd-costarica-scripts-bat)  
+    1.2. [redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts#12-redd-costarica-scripts-bat)  
+    1.3. [redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts#13-redd-costarica-randomforest-r)      
 2. [Herramientas informáticas](https://github.com/redd-costarica-scripts#2-herramientas-inform%C3%A1ticas)  
     2.1. [QGIS](https://github.com/redd-costarica-scripts#21-qgis)  
     2.2. [Orfeo Toolbox](https://github.com/redd-costarica-scripts#22-orfeo-toolbox)  
@@ -42,11 +42,11 @@ Los repositorios de código fuente son los siguientes:
 ### 1.1. redd-costarica-scripts-qgis
 [redd-costarica-scripts-qgis](https://github.com/redd-costarica-scripts/redd-costarica-scripts-qgis) contiene programas para ejecutarse en el sistema de información geográfica QGIS. Se agrupan en un complemento llamado `REDD+ Costa Rica`.
 
-### 1.2. redd-costarica-randomforest-r
-[redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r) contiene un programa en el lenguaje R que implementa el algoritmo de clasificación Random Forest.
-
-### 1.3. redd-costarica-scripts-bat
+### 1.2. redd-costarica-scripts-bat
 [redd-costarica-scripts-bat](https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat) contiene programas para procesamiento por lotes en archivos `.bat` del sistema operativo Microsoft Windows.
+
+### 1.3. redd-costarica-randomforest-r
+[redd-costarica-randomforest-r](https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r) contiene programas que implementan en el lenguaje R el algoritmo de clasificación Random Forest.
 
 ## 2. Herramientas informáticas
 Para utilizar los programas contenidos en los repositorios, es necesario instalar diferentes herramientas que incluyen sistemas de información geográfica (SIG), bibliotecas y aplicaciones para teledetección, lenguajes de programación y sistemas de control de versiones. También un complemento de QGIS llamado `REDD+ Costa Rica`, el cual fue desarrollado como parte de esta iniciativa.
@@ -90,6 +90,13 @@ Pueden descargarse como un [archivo ZIP](https://github.com/redd-costarica-scrip
 
 ```shell
 git clone https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat.git
+```
+
+### 2.8. Programas del algoritmo de clasificación Random Forest
+Pueden descargarse como un [archivo ZIP](https://github.com/redd-costarica-randomforest-r/redd-costarica-scripts-bat/archive/refs/heads/main.zip). Si se desea editar u observar el código fuente, el repositorio puede clonarse con el comando:
+
+```shell
+git clone https://github.com/redd-costarica-scripts/redd-costarica-randomforest-r.git
 ```
 
 ## 3. Protocolo metodológico
