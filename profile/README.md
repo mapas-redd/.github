@@ -1,7 +1,9 @@
-# Scripts para la elaboración de mapas de uso y cobertura de la tierra de Costa Rica en el contexto de REDD+
-Este es un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para apoyar la elaboración de mapas de uso y cobertura de la tierra, en el contexto del mecanismo de [Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+)](https://es.wikipedia.org/wiki/Reducci%C3%B3n_de_las_emisiones_de_la_deforestaci%C3%B3n).
+# Programas informáticos para la elaboración de mapas de uso y cobertura de la tierra de Costa Rica en el contexto de REDD+
+Este es un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para apoyar la elaboración de mapas de uso y cobertura de la tierra de Costa Rica, en el contexto del mecanismo de [Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+)](https://es.wikipedia.org/wiki/Reducci%C3%B3n_de_las_emisiones_de_la_deforestaci%C3%B3n).
 
-En este documento, se listan los repositorios, se brindan las instrucciones para la instalación de las herramientas informáticas necesarias y se describe el protocolo metodológico para el uso de los programas durante el proceso de elaboración de los mapas.
+Los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid. Este protocolo permite elaborar mapas de uso de suelo consistentes con la serie histórica de actividad de uso del suelo y cambio de uso del suelo generada entre 1987 y 2013 en Costa Rica. El protocolo incluye las tareas de descarga de imágenes y metadatos, detección de nubes y sombras, normalización horaria, normalización radiométrica, cálculo de índices de vegetación y textura, clasificación de las imágenes y generación de mosaicos.
+
+En este documento, se describen los repositorios de código fuente, se brindan las instrucciones para la instalación de las herramientas informáticas necesarias y se describe el uso de los programas durante el proceso de elaboración de los mapas.
 
 ## Contenidos
 1. [Repositorios](https://github.com/redd-costarica-scripts#1-repositorios)  
@@ -101,7 +103,7 @@ git clone https://github.com/redd-costarica-scripts/redd-costarica-randomforest-
 ```
 
 ## 3. Protocolo metodológico
-Los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid.
+Como se mencionó, los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid.
 
 El protocolo consiste de los siguientes pasos:
 
