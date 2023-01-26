@@ -1,5 +1,5 @@
 # Scripts para la elaboración de mapas de uso y cobertura de la tierra de Costa Rica en el contexto de REDD+
-Este es un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para apoyar la elaboración de mapas de uso y cobertura de la tierra, en el contexto del mecanismo de Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+).
+Este es un conjunto de repositorios de código fuente de programas informáticos (*scripts*) para apoyar la elaboración de mapas de uso y cobertura de la tierra, en el contexto del mecanismo de [Reducción de Emisiones por Deforestación y Degradación de bosques más conservación y aumento de reservas de carbono forestal (REDD+)](https://es.wikipedia.org/wiki/Reducci%C3%B3n_de_las_emisiones_de_la_deforestaci%C3%B3n).
 
 En este documento, se listan los repositorios, se brindan las instrucciones para la instalación de las herramientas informáticas necesarias y se describe el protocolo metodológico para el uso de los programas durante el proceso de elaboración de los mapas.
 
@@ -34,6 +34,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
     3.12. [Generación de regiones de interés](https://github.com/redd-costarica-scripts#312-generaci%C3%B3n-de-regiones-de-inter%C3%A9s)  
     3.13. [Clasificación de las imágenes](https://github.com/redd-costarica-scripts#313-clasificaci%C3%B3n-de-las-im%C3%A1genes)  
+    3.14. [Generación de mosaicos]()  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -94,7 +95,7 @@ git clone https://github.com/redd-costarica-scripts/redd-costarica-scripts-bat.g
 ## 3. Protocolo metodológico
 Los programas apoyan el protocolo metodológico del proyecto *Generating a Consistent Historical Time Series of Activity Data from Land Use Change for the Development of Costa Rica’s REDD Plus Reference Level*, desarrollado por Agresta, Digital Image Processing (Dimap), la Universidad de Costa Rica y la Universidad Politécnica de Madrid.
 
-Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamente:
+El protocolo consiste de los siguientes pasos:
 
 1. [Descarga de imágenes y metadatos.](https://github.com/redd-costarica-scripts#31-descarga-de-im%C3%A1genes-y-metadatos)  
 2. [Detección de nubes y sombras.](https://github.com/redd-costarica-scripts#32-detecci%C3%B3n-de-nubes-y-sombras)  
@@ -113,6 +114,7 @@ Este protocolo consiste de una serie de pasos, los cuales se enumeran seguidamen
 11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
 12. [Generación de regiones de interés](https://github.com/redd-costarica-scripts#312-generaci%C3%B3n-de-regiones-de-inter%C3%A9s)  
 13. [Clasificación de las imágenes](https://github.com/redd-costarica-scripts#313-clasificaci%C3%B3n-de-las-im%C3%A1genes)  
+14. [Generación de mosaicos]()  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
@@ -569,7 +571,7 @@ El programa `Script_RandonmForest_clasificacion.R` puede ejecutarse desde un amb
 - Archivo de tipo shapefile `.shp` (y archivos asociados) con las regiones de interés generadas en el paso 12.
 - Cantidad de puntos a muestrear.
 
-Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modiricarse en el archivo `clasificacion.bat`. Por ejemplo:
+Las rutas y nombres de estos archivos (así como los de los archivos de salida), deben modificarse en el archivo `clasificacion.bat`. Por ejemplo:
 
 ```shell
 call "C:/Program Files/R/R-4.2.1/bin/x64/Rscript.exe" D:/redd/clasificacion/randomforest.R C:/combinacion/LC08_P15_R54_c20b_2021_197.tif D:/redd/clasificacion/roi/p15_ROI.shp 10000 clases D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.tif D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.shp
@@ -585,5 +587,34 @@ clasificacion.bat
 ```
 
 **Salidas**:
-- Imagen clasificada.
+- Archivo raster de resultados. Tiene tres bandas:
+    1. Una primera banda con la clasificación asignada a cada pixel pixel.
+    2. Una segunda banda con el porcentaje de árboles de decisión que predicen la clase asignada en la primera banda. Esta banda proporciona una estimación de la calidad de la clasificación para cada uno de los pixeles de la imagen. Esta información se usa en el siguiente paso para priorizar los pixeles en la generación del mosaico.
+    3. Una tercera banda con la clasificación de los pixeles que han recibido un porcentaje de "votos" superior al 60%.
 - Archivo de tipo shapefile `.shp` (y archivos asociados) con regiones clasificadas.
+
+### 3.14. Generación de mosaicos
+En este paso, se fusionan todas las clasificaciones, de manera que cada pixel tenga asignada una sola clase (bosque, cultivo, área urbana, etc.). Se selecciona la clase que más "votos" suma en la banda 2 del archivo raster de resultados obtenido en el paso 13.
+
+La fusión se realiza con el programa `fusion.py`, el cual puede llamarse desde el programa de procesamiento por lotes `fusion.bat`, para así fusionar múltiples imágenes. Ambos programas están contenidos en el repositorio `redd-costarica-scripts-bat`.
+
+**Entradas**:
+- Directorio (carpeta) con los archivos de resultados (i.e. imágenes clasificadas) que se desea fusionar.
+
+La ruta del directorio de entrada (y el de salida también), debe modificarse en el archivo `fusion.bat`. Por ejemplo:
+
+```shell
+call python D:/redd/fusion/fusion.py D:/redd/fusion/raster_files_folder/ D:/redd/fusion/results_folder/
+```
+
+**Procesamiento**:
+- Ejecución de `fusion.bat`.
+
+Ejecución desde la línea de comandos del sistema operativo:
+```shell
+cd redd-costarica-scripts-bat
+fusion.bat
+```
+
+**Salidas**:
+- Directorio (carpeta) del mosaico resultante.
