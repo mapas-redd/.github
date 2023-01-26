@@ -34,7 +34,7 @@ En este documento, se listan los repositorios, se brindan las instrucciones para
     3.11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
     3.12. [Generación de regiones de interés](https://github.com/redd-costarica-scripts#312-generaci%C3%B3n-de-regiones-de-inter%C3%A9s)  
     3.13. [Clasificación de las imágenes](https://github.com/redd-costarica-scripts#313-clasificaci%C3%B3n-de-las-im%C3%A1genes)  
-    3.14. [Generación de mosaicos]()  
+    3.14. [Generación de mosaicos](https://github.com/redd-costarica-scripts#314-generaci%C3%B3n-de-mosaicos)  
 
 ## 1. Repositorios
 Los repositorios de código fuente son los siguientes:
@@ -114,7 +114,7 @@ El protocolo consiste de los siguientes pasos:
 11. [Combinación de bandas](https://github.com/redd-costarica-scripts#311-combinaci%C3%B3n-de-bandas)  
 12. [Generación de regiones de interés](https://github.com/redd-costarica-scripts#312-generaci%C3%B3n-de-regiones-de-inter%C3%A9s)  
 13. [Clasificación de las imágenes](https://github.com/redd-costarica-scripts#313-clasificaci%C3%B3n-de-las-im%C3%A1genes)  
-14. [Generación de mosaicos]()  
+14. [Generación de mosaicos](https://github.com/redd-costarica-scripts#314-generaci%C3%B3n-de-mosaicos)  
 
 En las secciones siguientes, se detalla la ejecución de cada uno de estos pasos.
 
